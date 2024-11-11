@@ -88,18 +88,30 @@
 </div>
 
 <script>
-    // Predefined text data for search (documents, notes, etc.)
-    const data = [
-        { id: 1, title: 'JavaScript Basics', content: 'Learn the basics of JavaScript including variables, loops, and functions.', url: 'https://www.javascript.com' },
-        { id: 2, title: 'HTML5 Introduction', content: 'HTML5 is the latest version of HTML, it introduces new tags and features for better web development.', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
-        { id: 3, title: 'CSS Flexbox Guide', content: 'Flexbox is a layout model in CSS that allows you to design complex layouts with ease.', url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/' },
-        { id: 4, title: 'React Tutorial', content: 'React is a JavaScript library for building user interfaces, focusing on component-based architecture.', url: 'https://reactjs.org/tutorial/tutorial.html' },
-        { id: 5, title: 'Node.js Overview', content: 'Node.js is a JavaScript runtime built on Chrome\'s V8 engine for building scalable network applications.', url: 'https://nodejs.org/en/docs/' },
-        { id: 6, title: 'Python for Data Science', content: 'Python is widely used in data science due to its simplicity and powerful libraries like pandas and NumPy.', url: 'https://www.datacamp.com/courses/intro-to-python-for-data-science' },
-        { id: 7, title: 'Git and GitHub Basics', content: 'Git is a version control system, and GitHub is a platform to host and manage Git repositories.', url: 'https://guides.github.com/introduction/git-handbook/' },
-        { id: 8, title: 'Digital Marketing 101', content: 'Digital marketing includes online marketing strategies like SEO, social media marketing, and content marketing.', url: 'https://www.hubspot.com/digital-marketing' },
-        { id: 9, title: 'Machine Learning Fundamentals', content: 'Machine learning is a type of AI where algorithms learn from data to make predictions and decisions.', url: 'https://www.coursera.org/learn/machine-learning' }
-    ];
+    // Generating a simulated large dataset with 10,000 items for demonstration
+    const data = [];
+    for (let i = 1; i <= 10000; i++) {
+        const isYouTube = Math.random() < 0.1; // 10% chance to be a YouTube link
+
+        let title, content, url;
+
+        if (isYouTube) {
+            title = `YouTube Video ${i}`;
+            content = `Watch this awesome YouTube video on topic ${i}.`;
+            url = `https://www.youtube.com/watch?v=video${i}`;
+        } else {
+            title = `Example Website ${i}`;
+            content = `This is a description of Example Website ${i}. It contains useful information about topic ${i}.`;
+            url = `https://www.example${i}.com`;
+        }
+
+        data.push({
+            id: i,
+            title: title,
+            content: content,
+            url: url
+        });
+    }
 
     // Function to perform the search
     function performSearch() {
