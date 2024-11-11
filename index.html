@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Power Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #4CAF50;
+            padding: 15px;
+            text-align: center;
+            color: white;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .search-results {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .search-results li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .search-results li:hover {
+            background-color: #f1f1f1;
+        }
+
+        .search-results a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .search-results a:hover {
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Power Search</h1>
+</header>
+
+<div class="container">
+    <input type="text" id="searchInput" placeholder="Search..." oninput="performSearch()">
+    <ul id="searchResults" class="search-results"></ul>
+</div>
+
+<script>
+    // Predefined data for search
+    const data = [
+        { title: 'Google', url: 'https://www.google.com' },
+        { title: 'Wikipedia', url: 'https://www.wikipedia.org' },
+        { title: 'Stack Overflow', url: 'https://stackoverflow.com' },
+        { title: 'GitHub', url: 'https://github.com' },
+        { title: 'MDN Web Docs', url: 'https://developer.mozilla.org' },
+        { title: 'YouTube', url: 'https://www.youtube.com' },
+        { title: 'Reddit', url: 'https://www.reddit.com' },
+        { title: 'Twitter', url: 'https://www.twitter.com' }
+    ];
+
+    // Function to perform the search
+    function performSearch() {
+        const query = document.getElementById('searchInput').value.toLowerCase();
+        const results = data.filter(item => item.title.toLowerCase().includes(query));
+
+        displayResults(results);
+    }
+
+    // Function to display the search results
+    function displayResults(results) {
+        const resultsContainer = document.getElementById('searchResults');
+        resultsContainer.innerHTML = '';
+
+        if (results.length > 0) {
+            results.forEach(item => {
+                const listItem = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = item.url;
+                link.textContent = item.title;
+                listItem.appendChild(link);
+                resultsContainer.appendChild(listItem);
+            });
+        } else {
+            resultsContainer.innerHTML = '<li>No results found</li>';
+        }
+    }
+</script>
+
+</body>
+</html>
