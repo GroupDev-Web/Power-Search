@@ -68,6 +68,12 @@
         .search-results a:hover {
             color: #4CAF50;
         }
+
+        .result-detail {
+            font-size: 14px;
+            color: #555;
+            padding-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -82,22 +88,33 @@
 </div>
 
 <script>
-    // Predefined data for search
+    // Predefined text data for search (documents, notes, etc.)
     const data = [
-        { title: 'Google', url: 'https://www.google.com' },
-        { title: 'Wikipedia', url: 'https://www.wikipedia.org' },
-        { title: 'Stack Overflow', url: 'https://stackoverflow.com' },
-        { title: 'GitHub', url: 'https://github.com' },
-        { title: 'MDN Web Docs', url: 'https://developer.mozilla.org' },
-        { title: 'YouTube', url: 'https://www.youtube.com' },
-        { title: 'Reddit', url: 'https://www.reddit.com' },
-        { title: 'Twitter', url: 'https://www.twitter.com' }
+        { id: 1, title: 'JavaScript Basics', content: 'Learn the basics of JavaScript including variables, loops, and functions.', url: 'https://www.javascript.com' },
+        { id: 2, title: 'HTML5 Introduction', content: 'HTML5 is the latest version of HTML, it introduces new tags and features for better web development.', url: 'https://developer.mozilla.org/en-US/docs/Web/HTML' },
+        { id: 3, title: 'CSS Flexbox Guide', content: 'Flexbox is a layout model in CSS that allows you to design complex layouts with ease.', url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/' },
+        { id: 4, title: 'React Tutorial', content: 'React is a JavaScript library for building user interfaces, focusing on component-based architecture.', url: 'https://reactjs.org/tutorial/tutorial.html' },
+        { id: 5, title: 'Node.js Overview', content: 'Node.js is a JavaScript runtime built on Chrome\'s V8 engine for building scalable network applications.', url: 'https://nodejs.org/en/docs/' },
+        { id: 6, title: 'Python for Data Science', content: 'Python is widely used in data science due to its simplicity and powerful libraries like pandas and NumPy.', url: 'https://www.datacamp.com/courses/intro-to-python-for-data-science' },
+        { id: 7, title: 'Git and GitHub Basics', content: 'Git is a version control system, and GitHub is a platform to host and manage Git repositories.', url: 'https://guides.github.com/introduction/git-handbook/' },
+        { id: 8, title: 'Digital Marketing 101', content: 'Digital marketing includes online marketing strategies like SEO, social media marketing, and content marketing.', url: 'https://www.hubspot.com/digital-marketing' },
+        { id: 9, title: 'Machine Learning Fundamentals', content: 'Machine learning is a type of AI where algorithms learn from data to make predictions and decisions.', url: 'https://www.coursera.org/learn/machine-learning' }
     ];
 
     // Function to perform the search
     function performSearch() {
         const query = document.getElementById('searchInput').value.toLowerCase();
-        const results = data.filter(item => item.title.toLowerCase().includes(query));
+        if (query.trim() === "") {
+            displayResults([]);  // Clear results if search input is empty
+            return;
+        }
+
+        const results = data.filter(item => {
+            return (
+                item.title.toLowerCase().includes(query) ||
+                item.content.toLowerCase().includes(query)
+            );
+        });
 
         displayResults(results);
     }
@@ -110,10 +127,15 @@
         if (results.length > 0) {
             results.forEach(item => {
                 const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = item.url;
-                link.textContent = item.title;
-                listItem.appendChild(link);
+                
+                // Check if the item has a URL to make it clickable
+                const resultLink = document.createElement('a');
+                resultLink.href = item.url;
+                resultLink.target = "_blank";  // Open link in a new tab
+                resultLink.innerHTML = `<strong>${item.title}</strong><br><span>${item.content.substring(0, 150)}...</span>`;
+
+                // Add the link to the list item
+                listItem.appendChild(resultLink);
                 resultsContainer.appendChild(listItem);
             });
         } else {
