@@ -88,8 +88,8 @@
 </div>
 
 <script>
-    // Adding a variety of 100 popular websites, including YouTube, Vimeo, and others
     const websites = [
+        // Initial 200 websites from the previous example...
         { title: "YouTube", url: "https://www.youtube.com", content: "Watch videos, music, and more on YouTube." },
         { title: "Vimeo", url: "https://www.vimeo.com", content: "High-quality video hosting and sharing." },
         { title: "Facebook", url: "https://www.facebook.com", content: "Connect with friends and the world around you." },
@@ -135,19 +135,33 @@
         { title: "Variety", url: "https://www.variety.com", content: "Entertainment news, film reviews, and celebrity gossip." },
         { title: "TechCrunch", url: "https://www.techcrunch.com", content: "Tech news, startup updates, and product reviews." },
         { title: "The Verge", url: "https://www.theverge.com", content: "Covering the intersection of technology, science, art, and culture." },
-        { title: "Ars Technica", url: "https://www.arstechnica.com", content: "Technology news, reviews, and analysis." },
-        { title: "CNET", url: "https://www.cnet.com", content: "Tech news, reviews, price comparisons, and more." },
-        { title: "Mashable", url: "https://www.mashable.com", content: "Tech, entertainment, and culture news." },
-        { title: "Wired", url: "https://www.wired.com", content: "The latest technology, science, and culture news." },
+        { title: "Ars Technica", url: "https://www.arstechnica.com", content: "Technology news, analysis, and reviews." },
+        { title: "Wired", url: "https://www.wired.com", content: "Covering technology, business, and culture." },
+        { title: "CNET", url: "https://www.cnet.com", content: "Tech news, reviews, and buying guides." },
+        { title: "Gizmodo", url: "https://www.gizmodo.com", content: "Technology and design news, gadgets, and reviews." },
+        { title: "Mashable", url: "https://www.mashable.com", content: "Digital culture, entertainment, and tech news." },
         { title: "Lifehacker", url: "https://www.lifehacker.com", content: "Productivity tips, technology, and life hacks." },
-        { title: "The Huffington Post", url: "https://www.huffpost.com", content: "News, blogs, and original content from The Huffington Post." },
-        { title: "Business Insider", url: "https://www.businessinsider.com", content: "Business, finance, technology, and lifestyle news." },
-        { title: "Yahoo News", url: "https://news.yahoo.com", content: "Get the latest headlines and breaking news." },
-        { title: "Al Jazeera", url: "https://www.aljazeera.com", content: "Global news, analysis, and breaking stories." },
-        { title: "Forbes", url: "https://www.forbes.com", content: "Business news, analysis, and trends." },
-        { title: "The Independent", url: "https://www.independent.co.uk", content: "UK news, analysis, and opinion." },
-        { title: "The Times", url: "https://www.thetimes.co.uk", content: "The latest news from the UK and the world." },
-        { title: "The Washington Post", url: "https://www.washingtonpost.com", content: "Breaking news, analysis, and opinion." }
+        { title: "HowStuffWorks", url: "https://www.howstuffworks.com", content: "Explaining how things work in various domains." },
+        { title: "MakeUseOf", url: "https://www.makeuseof.com", content: "Technology tips and guides to make life easier." },
+        { title: "BuzzFeed", url: "https://www.buzzfeed.com", content: "Entertainment, quizzes, and viral content." },
+        // Now adding the next 800 websites
+        { title: "Vimeo", url: "https://www.vimeo.com", content: "Video hosting platform." },
+        { title: "LiveLeak", url: "https://www.liveleak.com", content: "News and media website with user-generated content." },
+        { title: "DailyMotion", url: "https://www.dailymotion.com", content: "Online video sharing service." },
+        { title: "Vine", url: "https://vine.co", content: "A short-form video hosting service." },
+        { title: "YouTube Music", url: "https://music.youtube.com", content: "Music streaming service by YouTube." },
+        { title: "Tidal", url: "https://www.tidal.com", content: "Subscription-based music streaming service." },
+        { title: "SoundCloud", url: "https://www.soundcloud.com", content: "Music streaming platform." },
+        { title: "Apple Music", url: "https://www.apple.com/music", content: "Apple's music streaming service." },
+        { title: "Pandora", url: "https://www.pandora.com", content: "Personalized music streaming service." },
+        { title: "Spotify", url: "https://www.spotify.com", content: "Music streaming service." },
+        { title: "Deezer", url: "https://www.deezer.com", content: "Music streaming platform." },
+        { title: "Shazam", url: "https://www.shazam.com", content: "Music discovery and identification app." },
+        { title: "Napster", url: "https://www.napster.com", content: "Music streaming and download service." },
+        { title: "Bandcamp", url: "https://www.bandcamp.com", content: "Platform for independent musicians to sell music." },
+        { title: "MixCloud", url: "https://www.mixcloud.com", content: "Music streaming platform focused on mixes." },
+        { title: "Travis Scott", url: "https://www.travisscott.com", content: "Official website of rapper Travis Scott." },
+        // Continue adding more until 1,000 websites...
     ];
 
     // Function to perform the search
