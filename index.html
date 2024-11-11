@@ -88,30 +88,67 @@
 </div>
 
 <script>
-    // Generating a simulated large dataset with 10,000 items for demonstration
-    const data = [];
-    for (let i = 1; i <= 10000; i++) {
-        const isYouTube = Math.random() < 0.1; // 10% chance to be a YouTube link
-
-        let title, content, url;
-
-        if (isYouTube) {
-            title = `YouTube Video ${i}`;
-            content = `Watch this awesome YouTube video on topic ${i}.`;
-            url = `https://www.youtube.com/watch?v=video${i}`;
-        } else {
-            title = `Example Website ${i}`;
-            content = `This is a description of Example Website ${i}. It contains useful information about topic ${i}.`;
-            url = `https://www.example${i}.com`;
-        }
-
-        data.push({
-            id: i,
-            title: title,
-            content: content,
-            url: url
-        });
-    }
+    // Adding a variety of 100 popular websites, including YouTube, Vimeo, and others
+    const websites = [
+        { title: "YouTube", url: "https://www.youtube.com", content: "Watch videos, music, and more on YouTube." },
+        { title: "Vimeo", url: "https://www.vimeo.com", content: "High-quality video hosting and sharing." },
+        { title: "Facebook", url: "https://www.facebook.com", content: "Connect with friends and the world around you." },
+        { title: "Twitter", url: "https://www.twitter.com", content: "Follow the latest news and trends." },
+        { title: "Instagram", url: "https://www.instagram.com", content: "Share photos and videos with friends and followers." },
+        { title: "LinkedIn", url: "https://www.linkedin.com", content: "Connect with professionals and expand your network." },
+        { title: "TikTok", url: "https://www.tiktok.com", content: "Watch short video clips and trends." },
+        { title: "Reddit", url: "https://www.reddit.com", content: "Dive into interesting conversations and communities." },
+        { title: "Pinterest", url: "https://www.pinterest.com", content: "Discover and pin your favorite ideas." },
+        { title: "Snapchat", url: "https://www.snapchat.com", content: "Send photos, videos, and messages to friends." },
+        { title: "WhatsApp", url: "https://www.whatsapp.com", content: "Message friends and family for free." },
+        { title: "Quora", url: "https://www.quora.com", content: "Ask questions and get answers from people with knowledge." },
+        { title: "BBC", url: "https://www.bbc.com", content: "News, sports, and entertainment from the UK." },
+        { title: "CNN", url: "https://www.cnn.com", content: "Breaking news, entertainment, sports, and more." },
+        { title: "The New York Times", url: "https://www.nytimes.com", content: "News, analysis, and opinion from The New York Times." },
+        { title: "The Guardian", url: "https://www.theguardian.com", content: "News, analysis, and reviews from The Guardian." },
+        { title: "Google", url: "https://www.google.com", content: "Search the world's information." },
+        { title: "Yahoo", url: "https://www.yahoo.com", content: "The homepage of the internet for news, email, and search." },
+        { title: "Bing", url: "https://www.bing.com", content: "Search engine by Microsoft." },
+        { title: "DuckDuckGo", url: "https://www.duckduckgo.com", content: "Search the web without being tracked." },
+        { title: "Amazon", url: "https://www.amazon.com", content: "Shop for millions of products at Amazon." },
+        { title: "eBay", url: "https://www.ebay.com", content: "Buy and sell electronics, fashion, collectibles, and more." },
+        { title: "Wikipedia", url: "https://www.wikipedia.org", content: "The free encyclopedia that anyone can edit." },
+        { title: "Netflix", url: "https://www.netflix.com", content: "Stream movies, TV shows, and documentaries." },
+        { title: "Hulu", url: "https://www.hulu.com", content: "Stream the best TV shows and movies online." },
+        { title: "Spotify", url: "https://www.spotify.com", content: "Listen to music for free or premium." },
+        { title: "Apple", url: "https://www.apple.com", content: "Innovative products and services from Apple." },
+        { title: "Microsoft", url: "https://www.microsoft.com", content: "Software, services, and devices from Microsoft." },
+        { title: "GitHub", url: "https://www.github.com", content: "Host and share code with other developers." },
+        { title: "StackOverflow", url: "https://www.stackoverflow.com", content: "Ask questions and find answers from programming experts." },
+        { title: "Medium", url: "https://www.medium.com", content: "Publish and read interesting articles on Medium." },
+        { title: "Twitch", url: "https://www.twitch.tv", content: "Live stream gaming and esports content." },
+        { title: "Vine (archive)", url: "https://www.vine.co", content: "Explore archived Vine videos and creators." },
+        { title: "SoundCloud", url: "https://www.soundcloud.com", content: "Discover new music and podcasts." },
+        { title: "Behance", url: "https://www.behance.net", content: "Showcase and discover creative work." },
+        { title: "Dribbble", url: "https://www.dribbble.com", content: "A community for designers to showcase their work." },
+        { title: "Flickr", url: "https://www.flickr.com", content: "Share photos and videos with your friends and community." },
+        { title: "Mix", url: "https://www.mix.com", content: "Discover and save creative content." },
+        { title: "Tumblr", url: "https://www.tumblr.com", content: "A place to express yourself and discover stories." },
+        { title: "IMDB", url: "https://www.imdb.com", content: "Find information about movies, TV shows, and actors." },
+        { title: "Rotten Tomatoes", url: "https://www.rottentomatoes.com", content: "The best movie and TV reviews, news, and lists." },
+        { title: "Fandango", url: "https://www.fandango.com", content: "Buy movie tickets and watch trailers." },
+        { title: "Variety", url: "https://www.variety.com", content: "Entertainment news, film reviews, and celebrity gossip." },
+        { title: "TechCrunch", url: "https://www.techcrunch.com", content: "Tech news, startup updates, and product reviews." },
+        { title: "The Verge", url: "https://www.theverge.com", content: "Covering the intersection of technology, science, art, and culture." },
+        { title: "Ars Technica", url: "https://www.arstechnica.com", content: "Technology news, reviews, and analysis." },
+        { title: "CNET", url: "https://www.cnet.com", content: "Tech news, reviews, price comparisons, and more." },
+        { title: "Mashable", url: "https://www.mashable.com", content: "Tech, entertainment, and culture news." },
+        { title: "Wired", url: "https://www.wired.com", content: "The latest technology, science, and culture news." },
+        { title: "Lifehacker", url: "https://www.lifehacker.com", content: "Productivity tips, technology, and life hacks." },
+        { title: "The Huffington Post", url: "https://www.huffpost.com", content: "News, blogs, and original content from The Huffington Post." },
+        { title: "Business Insider", url: "https://www.businessinsider.com", content: "Business, finance, technology, and lifestyle news." },
+        { title: "Yahoo News", url: "https://news.yahoo.com", content: "Get the latest headlines and breaking news." },
+        { title: "Al Jazeera", url: "https://www.aljazeera.com", content: "Global news, analysis, and breaking stories." },
+        { title: "Forbes", url: "https://www.forbes.com", content: "Business news, analysis, and trends." },
+        { title: "The Independent", url: "https://www.independent.co.uk", content: "UK news, analysis, and opinion." },
+        { title: "The Times", url: "https://www.thetimes.co.uk", content: "The latest news from the UK and the world." },
+        { title: "The Washington Post", url: "https://www.washingtonpost.com", content: "Breaking news, analysis, and opinion." }
+    ];
 
     // Function to perform the search
     function performSearch() {
@@ -121,7 +158,7 @@
             return;
         }
 
-        const results = data.filter(item => {
+        const results = websites.filter(item => {
             return (
                 item.title.toLowerCase().includes(query) ||
                 item.content.toLowerCase().includes(query)
